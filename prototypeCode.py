@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import random
 import numpy as np
 seed = 13235634 #semilla para hacer el display del grafo
 
@@ -19,15 +20,23 @@ while i < numNod: #se añaden los nodos de 1 a n, sabiendo que n es numNod
     G.add_node(int(i+1))
     i += 1
 
+
 #DEFINIENDO ATRIBUTOS DE LOS NODOS
-G.nodes[1]['Mama'] = True
-G.nodes[1]['EmergencyMessages'] = 0
-G.nodes[2]['Mama'] = False
-G.nodes[2]['EmergencyMessages'] = 5
-G.nodes[3]['Mama'] = False
-G.nodes[3]['EmergencyMessages'] = 3
-G.nodes[4]['Mama'] = False
-G.nodes[4]['EmergencyMessages'] = 1
+def mamaTrue(): #definimos al nodo mamá y a los demás nodos con su respectivo atributo
+    G.nodes[1]['Mama'] = True
+    x = 2
+    while x < numNod + 1:  #navega por cada nodo
+        G.nodes[x]['Mama'] = False
+        x += 1
+
+def messages():   #funcion para dar numeros aleatorios de mensajes de emergencia a los nodos
+    x = 1   #se inicializa el ciclo en 1 porque los nodos van de 1 a n
+    while x < numNod + 1:  #navega por cada nodo
+        G.nodes[x]['EmergencyMessages'] = random.randint(0, 10) #le asigna un numero aleatorio del 0 al 10 de mensajes
+        x += 1
+
+mamaTrue()
+messages()
 
 
 
@@ -38,8 +47,6 @@ G[1][3]['distance'] = "12"
 G[1][4]['distance'] = "21"
 
 
-
-print("Adiós unu, aquí está tu grafo")
 
 #IMPRIMIR DISTANCIAS
 print("distancia de 1 a 2 =", G.edges[1, 2])
