@@ -1,6 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import random
+import os
+import time
 import numpy as np
 seed = 13235634 #semilla para hacer el display del grafo
 
@@ -35,31 +37,52 @@ def messages():   #funcion para dar numeros aleatorios de mensajes de emergencia
         G.nodes[x]['EmergencyMessages'] = random.randint(0, 10) #le asigna un numero aleatorio del 0 al 10 de mensajes
         x += 1
 
-mamaTrue()
-messages()
-
-
-
 #DEFINIENDO LAS DISTANCIAS ENTRE NODOS A PARTIR DE LAS ARISTAS (EDGES)
-G.add_edges_from([(1, 2), (1, 3), (1, 4)])
-G[1][2]['distance'] = "15"
-G[1][3]['distance'] = "12"
-G[1][4]['distance'] = "21"
+
+def definirDistancias():
+    G.add_edges_from([(1, 2), (1, 3), (1, 4)])
+    G[1][2]['distance'] = random.randint(0, 10)
+    G[1][3]['distance'] = random.randint(0, 10)
+    G[1][4]['distance'] = random.randint(0, 10)
 
 
 
 #IMPRIMIR DISTANCIAS
-print("distancia de 1 a 2 =", G.edges[1, 2])
-print("distancia de 1 a 3 =", G.edges[1, 3])
-print("distancia de 1 a 4 =", G.edges[1, 4])
+def imprimirDistancias():
+    print("distancia de 1 a 2 =", G.edges[1, 2])
+    print("distancia de 1 a 3 =", G.edges[1, 3])
+    print("distancia de 1 a 4 =", G.edges[1, 4])
 
 #IMPRIMIR LOS ATRIBUTOS DE LOS NODOS
-print(G.nodes.data())
+def imprimirAtributos():
+    print(G.nodes.data()) #para saber datos de mama y de emergencyMessages
+
 
 #IMPRIMIENDO GRAFO
-pos = nx.spring_layout(G, seed=seed)  # Semilla utilizada para hacer el display del grafo
-nx.draw(G, pos=pos) # se dibuja eel grafo
-plt.show() #se muestra el grafo
+def imprimirGrafo():
+    pos = nx.spring_layout(G, seed=seed)  # Semilla utilizada para hacer el display del grafo
+    nx.draw(G, with_labels=True, font_weight='bold')#se dibuja el grafo
+    plt.show() #se muestra el grafo
+    time.sleep(2)
+    #os.close(plt)
+
+def demon():
+    while 1:
+        mamaTrue()
+        messages()
+        definirDistancias()
+        imprimirDistancias()
+        imprimirAtributos()
+        imprimirGrafo()
+
+
+demon()
 
 
 
+
+
+
+
+#añadir funcion para reconocer los nodos con más mensajes y mandar alerta al usuario
+#
