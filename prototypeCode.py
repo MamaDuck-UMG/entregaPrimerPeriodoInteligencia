@@ -1,4 +1,4 @@
-'''
+''''
 5/03/2021
 Integrantes:
 Todos los integrantes de 8vo semestre de cibernética uwu
@@ -105,7 +105,21 @@ def printNeighbours(unu):#retornamos array de vecinos y el contador de vecinos
     return arrayf #retornamos array de vecinos
 
 
-#DEFINIR FUNCION DE ALEX AAAAAAAAAAAA
+def analisis(nodos):
+    for item in nodos:
+        adj1 = item.ady1
+        if item.tiempoactivos > 5 and item.conexiones > 20:
+            print("Alerta de bateria en el nodo ", item.tag, "\n")
+
+        for i in adj1:
+            if i.h > item.h*2:
+                print("Nodo ", i.tag," muestra una carga de conexiones considerable comparado al nodo ", item.tag ,"\n")
+            if abs(item.g - i.g) > 4:
+                print("Alerta! La transmisión de datos podría verse comprometida entre el nodo ", item.tag, " y ", i.taf, "\n")
+
+
+
+    return 0
 
 # INT MAIN
 
@@ -137,7 +151,7 @@ while True:#se va a estar ejecutando frecuentemente hasta que por consola le ind
     imprimirAtributos()
     imprimirGrafo()
 
-    #FUNCIONALEX(algoritmoRecorrido(nodoGrafo[0]))
+    analisis(algoritmoRecorrido(nodoGrafo[0]))
     algoritmoRecorrido(nodoGrafo[0])  # iniciamos el algoritmo de A estrella en una variable de objeto
     time.sleep(.2)#cadacierto tiempo irá analizando los nodos
 
