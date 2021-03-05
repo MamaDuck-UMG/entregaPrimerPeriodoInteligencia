@@ -104,6 +104,9 @@ def printNeighbours(unu):#retornamos array de vecinos y el contador de vecinos
     arrayf.append(contador) #añadimos el contador al array auxiliar
     return arrayf #retornamos array de vecinos
 
+
+#DEFINIR FUNCION DE ALEX AAAAAAAAAAAA
+
 # INT MAIN
 
 G = nx.Graph()  # inicializamos el grafo G
@@ -134,6 +137,7 @@ while True:#se va a estar ejecutando frecuentemente hasta que por consola le ind
     imprimirAtributos()
     imprimirGrafo()
 
+    #FUNCIONALEX(algoritmoRecorrido(nodoGrafo[0]))
     algoritmoRecorrido(nodoGrafo[0])  # iniciamos el algoritmo de A estrella en una variable de objeto
     time.sleep(.2)#cadacierto tiempo irá analizando los nodos
 
